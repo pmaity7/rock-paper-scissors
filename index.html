@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Rock Paper Scissors
+        </title>
+    </head>
+    <body>
+        <script>
+            function computerPlay(){
+                let values = ['ROCK', 'PAPER', 'SCISSORS'];
+                return values[Math.floor(Math.random()*3)];
+            }
+            console.log(computerPlay())
+            let playerSelection, computerSelection;
+            let playerScore = 0, computerScore = 0;
+
+            function round(playerSelection, computerSelection){
+                switch(true){
+                    case playerSelection == 'ROCK' && computerSelection == 'PAPER':
+                    case playerSelection == 'PAPER' && computerSelection == 'SCISSORS':
+                    case playerSelection == 'SCISSORS' && computerSelection == 'ROCK':
+                        computerScore++;
+                        return `You lose computer choice ${computerSelection} beats player choice ${playerSelection}`;
+                        break;
+                    case playerSelection == 'PAPER' && computerSelection == 'ROCK':
+                    case playerSelection == 'SCISSORS' && computerSelection == 'PAPER':
+                    case playerSelection == 'ROCK' && computerSelection == 'SCISSORS':
+                        playerScore++;
+                        return `You win - player choice ${playerSelection} beats computer choice ${computerSelection}`;
+                        break;  
+                    case playerSelection == 'PAPER' && computerSelection == 'PAPER':
+                    case playerSelection == 'SCISSORS' && computerSelection == 'SCISSORS':
+                    case playerSelection == 'ROCK' && computerSelection == 'ROCK':
+                        return `Draw - player choose ${playerSelection}, computer choose ${computerSelection}`;
+                        break; 
+
+                }
+            }
+
+            function game(computerScore, playerScore) {
+                if (computerScore > playerScore) {return `Computer won ${computerScore}, you lose ${playerScore}`;}
+                else if (playerScore > computerScore) {return `You won ${playerScore}, computer lose ${computerScore}`;}
+                else {return "It's a draw";}
+            }
+            const rounds = prompt("How many times you want to play the game");
+
+            for (let i=0;i<rounds;i++){
+                playerSelection = prompt("Enter any of Rock, Paper, Scissors");
+                computerSelection = computerPlay();
+                alert(round(playerSelection.toUpperCase(), computerSelection));
+                alert(`Computer Score - ${computerScore}, Player Score - ${playerScore}`);
+            }
+
+            alert(game(computerScore, playerScore));
+        </script>
+    </body>
+</html>
