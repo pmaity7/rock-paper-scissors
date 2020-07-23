@@ -1,0 +1,84 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #000;
+}
+
+#title {
+    font-size: 4vh;
+    font-family: 'Comic Neue', cursive;
+    color: rgb(85, 206, 206);
+    text-transform: uppercase;
+    text-shadow: 3px 3px 10px teal;
+}
+
+#score {
+    display: flex;
+    flex-direction: row;
+    width: 25px;
+    justify-content: center;
+    align-items: center;
+}
+#player-score, #computer-score {
+    font-size: 10vh;
+    border: 2px solid white;
+    padding: 10px;
+    margin: 5px;
+    color: white;
+}
+#score p {
+    background-color: rgba(231, 21, 6, 0.993);
+    padding: 15px;
+    color: white;
+    font-family: 'Comic Neue', cursive;
+    margin: 10px;
+    border: 3px solid black;
+    border-radius: 4px;
+    text-shadow: 2px 2px 10px white;
+    box-shadow: 2px 2px 20px darkgrey;
+    text-transform: uppercase;
+}
+
+#message {
+    font-size: 30px;
+    font-family: 'Comic Neue', cursive, sans-serif;
+    text-transform: uppercase;
+    color: rgb(81, 231, 231);
+    font-weight: 800;
+    transition: all 1s ease;
+    text-shadow: 2px 2px 20px darkgrey;
+}
+
+.winner-message {
+    transform: scale(2);
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    grid-template-rows: 60vh;
+}
+
+.button{
+    background-color: rgb(0, 0, 0);
+    padding: 5px;
+    border-radius: 50%;
+    margin: 30px;
+    transition: all .4s ease;
+    box-shadow: 2px 2px 20px darkgrey;
+}
+
+.click {
+    transform: scale(1.2);
+    background-color: darkorange;
+}
+
+.button img{
+    width: 25vh;
+}

@@ -1,19 +1,54 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>
-            Rock Paper Scissors
-        </title>
+        <title>Rock paper Scissors</title>
+        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@800&display=swap" rel="stylesheet">
     </head>
     <body>
+        <div id="title">
+            <h1>Rock Paper Scissors</h1>
+        </div>
+        
+        <div id="score">
+            <p>Computer Score</p>
+            <span id="computer-score">0</span>
+            <span id="player-score">0</span>
+            <p>Player Score</p>
+        </div>
+
+        <p id="message"></p>
+
+        <div class="buttons">
+            
+            <button class="button" id="btn-rock" value="ROCK"><img src="images/rock.png" alt="rock"></button>
+            
+            <button class="button" id="btn-paper" value="PAPER"><img src="images/paper.png" alt="paper"></button>
+            
+            <button class="button" id="btn-scissors" value="SCISSORS"><img src="images/scissors.png" alt="paper"></button>
+            
+        </div>
+
+        <div>
+            <p>Made by Pallavi Maity</p>
+        </div>
+
         <script>
+            //caching the DOM
+            let playerScore = 0;
+            let computerScore = 0;
+            let player_score = document.querySelector('#player-score');
+            let computer_score = document.querySelector('#computer-score');
+            const button = Array.from(document.querySelectorAll('.button'));
+            const btn_rock = document.querySelector('#btn-rock');
+            const btn_paper = document.querySelector('#btn-paper');
+            const btn_scissors = document.querySelector('#btn-scissors');
+            const message = document.querySelector('#message');
+
             function computerPlay(){
                 let values = ['ROCK', 'PAPER', 'SCISSORS'];
                 return values[Math.floor(Math.random()*3)];
             }
-            
-            let playerSelection, computerSelection;
-            let playerScore = 0, computerScore = 0;
 
             function round(playerSelection, computerSelection){
                 switch(true){
@@ -34,25 +69,65 @@
                     case playerSelection == 'ROCK' && computerSelection == 'ROCK':
                         return `Draw - player choose ${playerSelection}, computer choose ${computerSelection}`;
                         break; 
-
                 }
             }
 
+
+            button.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                btn.classList.add('click');
+                
+            });
+            });
+            button.forEach((btn) => {
+                btn.addEventListener('transitionend', () => {
+                //btn.classList.add('click');
+                btn.classList.remove('click');
+            });
+            });
+            
+            btn_rock.addEventListener('click', () => {
+                console.log(btn_rock.value);
+                message.textContent = round(btn_rock.value, computerPlay());
+                player_score.textContent = playerScore;
+                computer_score.textContent = computerScore;
+                console.log(playerScore.textContent);
+                game(computerScore, playerScore);
+            });
+
+            btn_paper.addEventListener('click', () => {
+                console.log(btn_paper.value);
+                message.textContent = round(btn_paper.value, computerPlay());
+                player_score.textContent = playerScore;
+                computer_score.textContent = computerScore;
+                game(computerScore, playerScore);
+            });
+
+            btn_scissors.addEventListener('click', () => {
+                console.log(btn_scissors.value);
+                message.textContent = round(btn_scissors.value, computerPlay());
+                player_score.textContent = playerScore;
+                computer_score.textContent = computerScore;
+                game(computerScore, playerScore);
+            });
+            
             function game(computerScore, playerScore) {
-                if (computerScore > playerScore) {return `Computer won ${computerScore}, you lose ${playerScore}`;}
-                else if (playerScore > computerScore) {return `You won ${playerScore}, computer lose ${computerScore}`;}
-                else {return "It's a draw";}
+                if(computerScore == 5 && playerScore < 5){ 
+                    message.textContent = 'Computer won this round';
+                    message.classList.add('.winner-message');
+                    player_score.textContent = 0;
+                    computer_score.textContent = 0;
+                    location.reload(true);
+                    
+                } else if (playerScore == 5 && computerScore < 5) {
+                    message.textContent = 'You won this round';
+                    message.classList.add('.winner-message');
+                    player_score.textContent = 0;
+                    computer_score.textContent = 0;
+                    location.reload(true);    
+             }
             }
-            const rounds = prompt("How many times you want to play the game");
-
-            for (let i=0;i<rounds;i++){
-                playerSelection = prompt("Enter any of Rock, Paper, Scissors");
-                computerSelection = computerPlay();
-                alert(round(playerSelection.toUpperCase(), computerSelection));
-                console.log(`Computer Score - ${computerScore}, Player Score - ${playerScore}`);
-            }
-
-            alert(game(computerScore, playerScore));
+            
         </script>
     </body>
 </html>
